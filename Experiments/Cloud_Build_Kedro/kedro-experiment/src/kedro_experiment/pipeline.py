@@ -26,7 +26,7 @@ def create_pipeline(**kwargs) -> Pipeline:
             node(
                 func=report_accuracy,
                 inputs=["y_pred", "y_test"],
-                outputs=None,
+                outputs="accuracy",
                 name="report_accuracy",
             ),
         ]
