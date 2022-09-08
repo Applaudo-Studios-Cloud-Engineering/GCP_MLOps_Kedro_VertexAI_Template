@@ -16,7 +16,7 @@
         "exec-make-predictions": {
           "container": {
             "args": [
-              "kedro vertexai -e local initialize-job --params='{\"train_fraction\": 0.8, \"random_state\": 3, \"target_column\": \"species\"}'"
+              "kedro run -n make_predictions --params='{\"train_fraction\": 0.8, \"random_state\": 3, \"target_column\": \"species\"}'"
             ],
             "command": [
               "/bin/bash",
@@ -32,7 +32,7 @@
         "exec-report-accuracy": {
           "container": {
             "args": [
-              "kedro vertexai -e local initialize-job --params='{\"train_fraction\": 0.8, \"random_state\": 3, \"target_column\": \"species\"}'"
+              "kedro run -n report_accuracy --params='{\"train_fraction\": 0.8, \"random_state\": 3, \"target_column\": \"species\"}'"
             ],
             "command": [
               "/bin/bash",
@@ -48,7 +48,7 @@
         "exec-split": {
           "container": {
             "args": [
-              "kedro vertexai -e local initialize-job --params='{\"train_fraction\": 0.8, \"random_state\": 3, \"target_column\": \"species\"}'"
+              "kedro run -n split"
             ],
             "command": [
               "/bin/bash",
