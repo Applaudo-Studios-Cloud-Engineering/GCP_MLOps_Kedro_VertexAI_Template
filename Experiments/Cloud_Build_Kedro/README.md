@@ -57,15 +57,11 @@ Enable the following APIs on GCP:
 
 6. On GCP, create a private bucket in Cloud Storage to store the input or dataset needed for the first node. In our case, we store the iris.csv file. To know the necessary steps to create a bucket in Google Cloud Storage (GSC) see the following image:
 
-
     <img src="../../img/gcs.png" title="GCS guide">
-
 
 7. On GCP, create a Vertex Pipeline to automate and monitor the ML systems. For this step, read the following illustrative guide:
 
-
     <img src="../../img/vertex.png" title="Vertex AI guide">
-
 
 > Note: For the successful of this experiment, it was necessary to modify the code of two files:
 >
