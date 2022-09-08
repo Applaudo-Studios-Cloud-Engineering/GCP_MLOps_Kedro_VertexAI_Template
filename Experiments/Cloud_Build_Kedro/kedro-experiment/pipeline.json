@@ -1,0 +1,119 @@
+{
+  "pipelineSpec": {
+    "components": {
+      "comp-make-predictions": {
+        "executorLabel": "exec-make-predictions"
+      },
+      "comp-report-accuracy": {
+        "executorLabel": "exec-report-accuracy"
+      },
+      "comp-split": {
+        "executorLabel": "exec-split"
+      }
+    },
+    "deploymentSpec": {
+      "executors": {
+        "exec-make-predictions": {
+          "container": {
+            "args": [
+              "kedro vertexai -e local initialize-job --params='{\"train_fraction\": 0.8, \"random_state\": 3, \"target_column\": \"species\"}'"
+            ],
+            "command": [
+              "/bin/bash",
+              "-c"
+            ],
+            "image": "us-docker.pkg.dev/crprueba-machine-learning/experiment-cloud-build/kedro-experiment:tag7",
+            "resources": {
+              "cpuLimit": 0.2,
+              "memoryLimit": 0.067108864
+            }
+          }
+        },
+        "exec-report-accuracy": {
+          "container": {
+            "args": [
+              "kedro vertexai -e local initialize-job --params='{\"train_fraction\": 0.8, \"random_state\": 3, \"target_column\": \"species\"}'"
+            ],
+            "command": [
+              "/bin/bash",
+              "-c"
+            ],
+            "image": "us-docker.pkg.dev/crprueba-machine-learning/experiment-cloud-build/kedro-experiment:tag7",
+            "resources": {
+              "cpuLimit": 0.2,
+              "memoryLimit": 0.067108864
+            }
+          }
+        },
+        "exec-split": {
+          "container": {
+            "args": [
+              "kedro vertexai -e local initialize-job --params='{\"train_fraction\": 0.8, \"random_state\": 3, \"target_column\": \"species\"}'"
+            ],
+            "command": [
+              "/bin/bash",
+              "-c"
+            ],
+            "image": "us-docker.pkg.dev/crprueba-machine-learning/experiment-cloud-build/kedro-experiment:tag7",
+            "resources": {
+              "cpuLimit": 0.2,
+              "memoryLimit": 0.067108864
+            }
+          }
+        }
+      }
+    },
+    "pipelineInfo": {
+      "name": "kedro-experiment"
+    },
+    "root": {
+      "dag": {
+        "tasks": {
+          "make-predictions": {
+            "cachingOptions": {
+              "enableCache": true
+            },
+            "componentRef": {
+              "name": "comp-make-predictions"
+            },
+            "dependentTasks": [
+              "split"
+            ],
+            "taskInfo": {
+              "name": "make-predictions"
+            }
+          },
+          "report-accuracy": {
+            "cachingOptions": {
+              "enableCache": true
+            },
+            "componentRef": {
+              "name": "comp-report-accuracy"
+            },
+            "dependentTasks": [
+              "make-predictions",
+              "split"
+            ],
+            "taskInfo": {
+              "name": "report-accuracy"
+            }
+          },
+          "split": {
+            "cachingOptions": {
+              "enableCache": true
+            },
+            "componentRef": {
+              "name": "comp-split"
+            },
+            "taskInfo": {
+              "name": "split"
+            }
+          }
+        }
+      }
+    },
+    "schemaVersion": "2.0.0",
+    "sdkVersion": "kfp-1.8.13"
+  },
+  "runtimeConfig": {}
+}
