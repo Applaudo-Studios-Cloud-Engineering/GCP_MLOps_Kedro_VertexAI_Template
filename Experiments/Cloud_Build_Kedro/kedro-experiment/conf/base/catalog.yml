@@ -44,4 +44,28 @@
 
 example_iris_data:
   type: pandas.CSVDataSet
-  filepath: data/01_raw/iris.csv
+  filepath: gs://vertex-kedro-test/data/iris.csv
+
+X_train:
+  type: pandas.CSVDataSet
+  filepath: gs://vertex-kedro-test/iris_X_train.csv
+
+X_test:
+  type: pandas.CSVDataSet
+  filepath: gs://vertex-kedro-test/iris_X_test.csv
+
+y_train:
+  type: pandas.CSVDataSet
+  filepath: gs://vertex-kedro-test/iris_y_train.csv
+
+y_test:
+  type: pandas.CSVDataSet
+  filepath: gs://vertex-kedro-test/iris_y_test.csv
+
+y_pred:
+  type: pandas.CSVDataSet
+  filepath: gs://vertex-kedro-test/iris_y_pred.csv
+
+accuracy:
+  type: pandas.CSVDataSet
+  filepath: gs://vertex-kedro-test/iris_z_output.csv
