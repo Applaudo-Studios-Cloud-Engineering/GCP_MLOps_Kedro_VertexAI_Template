@@ -38,16 +38,17 @@ Enable the following APIs on GCP:
 
 2. Three Python packages necessary for the Docker image to work are added to the requirements.txt file: 1) numpy (version 1.21.6), 2) pandas (version 1.3.5), and 3) gcsfs (version 2022.1.0).
 
-3. Try run a container with the image in your local. For this, use the following commands:
-
-
-
 3. Use the *init* command with two argumentss (PROJECT_ID and REGION) to generate a sample configuration file. We run the command:
 
         kedro vertexai init crprueba-machine-learning us-central1
         Usage: kedro vertexai init [PROJECT_ID] [REGION]
 
     After to execute this command, you can see vertexai.yaml file in conf/base.
+
+4. The catalog.yml file in conf/base was modified to add the path of the bucket where the outputs of each node will be stored.
+
+        filepath: gs://vertex-kedro-test/iris_X_train.csv
+        Usage: filepath: gs://[BUCKET_NAME]/[OUTPUT_FILE_NAME]
 
 4. To transform Kedro pipeline into Vertex AI workflow, use the *compile* command. In our case, we run the following command in the terminal:
 
@@ -61,13 +62,13 @@ Enable the following APIs on GCP:
     We change all the args like this:
 
 - Node: exec-make-predictions
-"kedro vertexai -e local initialize-job --params='{ }'" => "kedro run -n make_predictions --params='{ }'"
+" kedro vertexai -e local initialize-job --params='{ }' " => " kedro run -n make_predictions --params='{ }' "
 
 - Node: exec-report-accuracy
-"kedro vertexai -e local initialize-job --params='{ }'" => "kedro run -n report_accuracy --params='{ }'"
+" kedro vertexai -e local initialize-job --params='{ }' " => " kedro run -n report_accuracy --params='{ }' "
 
 - Node: exec-split
-"kedro vertexai -e local initialize-job --params='{ }'" => "kedro run -n split"
+" kedro vertexai -e local initialize-job --params='{ }' " => " kedro run -n split"
 
 6. On GCP, create a private bucket in Cloud Storage to store the input or dataset needed for the first node. In our case, we store the iris.csv file. To know the necessary steps to create a bucket in Google Cloud Storage (GSC) see the following image:
 
