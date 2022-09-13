@@ -4,6 +4,16 @@
 
 The purpose of this experiment is to enable us to gather experience and knowledge on how to produce Docker images in the Cloud Build on GCP and then send those images to a registry services, either a Container Registry or an Artifact Registry.
 
+## Concepts
+
+### Vertex AI Pipelines
+
+This resource on GCP helps you to automate, monitor, and govern your ML systems by orchestrating your ML workflow in a serveless manner.
+
+### ML Pipelines
+
+ML pipelines are portable and scalable ML workflows that are based on containers. Each pipeline are composed by sets of code that perform one part of a workflow, such as data preprocessing, data transformation, and training a model. The different components of pipeline are: inputs, outputs, and the location of a container image.
+
 ## Prerequisites
 
 Install the following Python plugins:
@@ -27,6 +37,10 @@ Enable the following APIs on GCP:
 1. In the root of the kedro-experiment directory, a Cloud Build configuration file (YAML format) was created to automatically do the following tasks: 1) build Docker image and 2) push Docker image to Artifact Registry.
 
 2. Three Python packages necessary for the Docker image to work are added to the requirements.txt file: 1) numpy (version 1.21.6), 2) pandas (version 1.3.5), and 3) gcsfs (version 2022.1.0).
+
+3. Try run a container with the image in your local. For this, use the following commands:
+
+
 
 3. Use the *init* command with two argumentss (PROJECT_ID and REGION) to generate a sample configuration file. We run the command:
 
@@ -74,6 +88,12 @@ Path: Experiments/Cloud_Build_Kedro/kedro-experiment/src/kedro_experiment/pipeli
 Changes: In the *create_pipeline* function, the node output of the *report_accuracy* function was changed from *none* to *accuracy*
 
 ### Links
+
+Kedro
+<https://kedro.readthedocs.io/en/stable/>
+
+Kedro Docker Plugin
+<https://kedro-kubeflow.readthedocs.io/en/0.7.0/>
 
 Kedro Vertex AI Plugin
 <https://kedro-vertexai.readthedocs.io/en/0.6.0/source/02_installation/index.html>
