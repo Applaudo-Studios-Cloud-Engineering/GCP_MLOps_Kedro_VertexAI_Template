@@ -97,3 +97,6 @@ Kedro Docker Plugin
 
 Kedro Vertex AI Plugin
 <https://kedro-vertexai.readthedocs.io/en/0.6.0/source/02_installation/index.html>
+
+Vertex AI Pipelines
+<https://cloud.google.com/vertex-ai/docs/pipelines>
